@@ -1,6 +1,9 @@
 import {useState} from "react"
+import { useServiceContext } from '../hooks/useServiceContext'
+
 
 const ServiceForm = () => {
+    const { dispatch } = useServiceContext()
     const [title, setTitle] = useState('')
     const [main_description, setMain_description] = useState('')
     const [price, setPrice] = useState('')
@@ -29,6 +32,7 @@ const ServiceForm = () => {
             setTitle('')
             setMain_description('')
             setPrice('')
+            dispatch({type: 'CREATE_SERVICE', payload: json})
         }
     }
 
