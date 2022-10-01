@@ -1,6 +1,7 @@
 const ServiceList = ({ service }) => {
     return ( 
         <div className="serviceList">
+             <hr /> 
             <h4><strong>Title: </strong>{service.title}</h4>
             <p><strong>Description: </strong>{service.main_description}</p>
             <p><strong>Price: </strong>{service.price} Tk</p>
