@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 // components
 import ServiceList from '../components/ServiceList'
+import ServiceForm from '../components/ServiceForm'
+
 
 const Home = () => {
     const [services, setServices] = useState(null)
@@ -20,6 +22,8 @@ const Home = () => {
 
     return ( 
         <div className="home">
+             <ServiceForm/>
+             <br /><br />
             <div className="services">
                 {services && services.map((service) => (
                     <ServiceList key={service._id} service={service}/>
