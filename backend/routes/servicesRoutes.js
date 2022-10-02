@@ -21,7 +21,7 @@ router.get('/:id', getService)
 router.post('/', createService)
 
 // DELETE a service
-router.post('/:id', deleteService)
+router.delete('/:id', deleteService)
 
 // UPDATE a service
 router.patch('/:id', updateService)

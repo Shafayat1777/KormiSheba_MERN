@@ -12,6 +12,10 @@ export const serviceReducer = (state, action) => {
             return {
                 services: [action.payload, ...state.services]
             }
+        case 'DELETE_SERVICE':
+            return{
+                services: state.services.filter((s) => s._id !== action.payload._id)
+            }
         default:
             return state
     }
