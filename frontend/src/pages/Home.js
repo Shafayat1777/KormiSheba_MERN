@@ -21,7 +21,7 @@ const Home = () => {
             }
         }
         fetchServices()
-    }, [])
+    }, [dispatch])
 
     return ( 
         <div className="home">

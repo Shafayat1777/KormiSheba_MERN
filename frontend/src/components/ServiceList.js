@@ -1,5 +1,7 @@
 import { useServiceContext } from '../hooks/useServiceContext'
 
+// date fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const ServiceList = ({ service }) => {
     const { dispatch } = useServiceContext()
@@ -23,7 +25,7 @@ const ServiceList = ({ service }) => {
             <h4><strong>Title: </strong>{service.title}</h4>
             <p><strong>Description: </strong>{service.main_description}</p>
             <p><strong>Price: </strong>{service.price} Tk</p>
-            <p><strong>Created at: </strong>{service.createdAt} </p>
+            <p><strong>Created at: </strong>{formatDistanceToNow(new Date(service.createdAt), { addSuffix: true})} </p>
             <span onClick={handleClick}> delete </span>
         </div>
      );
