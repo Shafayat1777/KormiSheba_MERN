@@ -1,14 +1,29 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { Nav } from '../Styles/NavStyled'
+
 
 const Navbar = () => {
+    const [open, setOpen] = useState(false)
+    console.log(open)
     return ( 
-        <header>
-            <div className="container">
-                <Link to='/'>
-                    <h1>Services</h1>
+            <Nav open={open}>
+                <Link className='TitleLink' to='/'>
+                    KormiSheba
                 </Link>
-            </div>
-        </header>
+                
+                <ul>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/'>Dashboard</Link></li>
+                    <li><Link to='/'>About</Link></li>
+                </ul>
+
+                <button className='HamBurg' onClick={() => setOpen(!open)}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </Nav>
      );
 }
  
