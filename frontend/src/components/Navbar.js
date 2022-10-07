@@ -14,8 +14,9 @@ const Navbar = () => {
                 
                 <ul>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/'>Dashboard</Link></li>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
                     <li><Link to='/'>About</Link></li>
+                    <li><span className='material-symbols-outlined'>person</span></li>
                 </ul>
 
                 <button className='HamBurg' onClick={() => setOpen(!open)}>
