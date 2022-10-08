@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useServiceContext } from '../hooks/useServiceContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 // components
 import ServiceList from '../components/ServiceList'
@@ -9,10 +10,15 @@ import ServiceForm from '../components/ServiceForm'
 const Dashboard = () => {
     // const [services, setServices] = useState(null)
     const {services, dispatch} = useServiceContext()
-    
+    const { user } = useAuthContext()
+
     useEffect(() => {
         const fetchServices = async () => {
-            const response = await fetch('/api/services')
+            const response = await fetch('http://localhost:4000/api/services', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
             const json = await response.json()
 
             if(response.ok){
@@ -20,11 +26,14 @@ const Dashboard = () => {
                 dispatch({type: 'SET_SERVICES', payload:json})
             }
         }
-        fetchServices()
-    }, [dispatch])
+
+        if(user){
+            fetchServices()
+        }
+    }, [dispatch, user])
 
     return ( 
-        <div className="home">
+        <div className="Dashboard">
              <ServiceForm/>
              <br /><br />
             <div className="services">

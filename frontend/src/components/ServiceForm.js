@@ -1,6 +1,6 @@
 import {useState} from "react"
 import { useServiceContext } from '../hooks/useServiceContext'
-
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const ServiceForm = () => {
     const { dispatch } = useServiceContext()
@@ -8,17 +8,24 @@ const ServiceForm = () => {
     const [main_description, setMain_description] = useState('')
     const [price, setPrice] = useState('')
     const [error, setError] = useState(null)
+    const { user } = useAuthContext()
     
     const handelSubmit = async (e) => {
         e.preventDefault()
 
+        if(!user){
+            setError('You must be logged in')
+            return
+        }
+
         const service = {title, main_description, price}
 
-        const response = await fetch('/api/services', {
+        const response = await fetch('http://localhost:4000/api/services', {
             method: 'POST',
             body: JSON.stringify(service),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
         const json = await response.json()

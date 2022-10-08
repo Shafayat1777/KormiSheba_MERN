@@ -6,10 +6,12 @@ const {
     deleteService,
     updateService
  } = require('../controllers/servicesController')
+const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
 
-
+// require Auth for all service routes
+router.use(requireAuth)
 
 // GET all services
 router.get('/', getServices)
