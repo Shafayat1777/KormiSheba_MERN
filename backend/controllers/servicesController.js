@@ -3,7 +3,9 @@ const Service = require('../models/servicesModel')
 
 // get all services
 const getServices = async (req, res) => {
-    const services = await Service.find({}).sort({createdAt: -1})
+    const user_id = req.user._id
+    
+    const services = await Service.find({user_id}).sort({createdAt: -1})
     
     res.status(200).json(services)
 }
@@ -31,7 +33,8 @@ const createService = async (req, res) => {
     
     // add doc to db
     try{
-        const service = await Service.create({ title, main_description, price })
+        const user_id = req.user._id
+        const service = await Service.create({ title, main_description, price, user_id })
         res.status(200).json(service)
     } catch(error) {
         res.status(400).json({ error: error.message })

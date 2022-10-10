@@ -65,10 +65,20 @@ const Nav = styled.nav`
         background: none;
         cursor: pointer;
 
+        span{
+            display: block;
+            width: 33px;
+            height: 4px;
+            margin-bottom: 5px;
+            background-color: var(--span);
+            border-radius: 6px;
+            transition: 0.4s;
+            transform-origin: 3.5px;
+        }
+
         &:hover span:nth-child(2){
-        /* transform:  translateX(10px); */
-        transform: ${({open}) => !open? 'translateX(10px)' : ''};
-        background-color: var(--linkhov);
+            transform: ${({open}) => !open? 'translateX(10px)' : ''};
+            background-color: var(--linkhov);
         }
 
         span:nth-child(1){
@@ -81,27 +91,9 @@ const Nav = styled.nav`
         span:nth-child(3){
             transform: ${({open}) => open? 'rotate(-45deg)' : 'rotate(0)'};
         }
-        
     }
 
-    span{
-        display: block;
-        width: 33px;
-        height: 4px;
-        margin-bottom: 5px;
-        background-color: var(--span);
-        border-radius: 6px;
-        transition: 0.4s;
-        transform-origin: 3.5px;
-
-        /* z-index: 1; */
-        /* position: relative; */
-
-        /* &:hover {
-        transform:  translateX(10px);
-        background-color: #edf5e1;
-        } */
-    }
+    
 
 
     @media (max-width: 768px) {
@@ -129,6 +121,10 @@ const Nav = styled.nav`
         li{
             margin: 7px 0;
         }
+    }
+
+    .material-symbols-outlined{
+        color: var(--navtext);
     }
 `;
 

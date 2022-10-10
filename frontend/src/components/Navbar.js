@@ -1,11 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { Nav } from '../Styles/NavStyled'
+import { useLogout } from '../hooks/useLogout'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
-    console.log(open)
+    const { logout } = useLogout()
+    const { user } = useAuthContext()
+
+    const handleClick = () => {
+        logout()
+    }
+
     return ( 
             <Nav open={open}>
                 <Link className='TitleLink' to='/'>
@@ -13,9 +21,12 @@ const Navbar = () => {
                 </Link>
                 
                 <ul>
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/'>Dashboard</Link></li>
-                    <li><Link to='/'>About</Link></li>
+                    <li>{!user && <Link to='/login'>Login</Link>}</li>
+                    <li>{!user && <Link to='/signup'>Signup</Link>}</li>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
+                    <li><Link to='/about'>About</Link></li>
+                    <li>{user && <button onClick={handleClick}>Logout</button>}</li>
+                    <li>{user && <span className='material-symbols-outlined'>person</span>}</li>
                 </ul>
 
                 <button className='HamBurg' onClick={() => setOpen(!open)}>
