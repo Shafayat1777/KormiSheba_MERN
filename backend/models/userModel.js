@@ -27,11 +27,15 @@ const userSchema = new Schema({
         required: false
     },
     about_me:{
-        type: Number,
+        type: String,
         required: false
     },
     rating:{
         type: Number,
+        required: false
+    },
+    avatar:{
+        type: String,
         required: false
     }
 }, { timestamps: true })
@@ -70,7 +74,8 @@ userSchema.statics.signup = async function(name, email, password){
         isSuper: false,
         isBuyer: false,
         about_me: '',
-        rating: null
+        rating: null,
+        avatar: null,
     })
 
     return user

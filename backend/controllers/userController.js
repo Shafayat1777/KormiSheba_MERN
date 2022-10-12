@@ -39,7 +39,43 @@ const signupUser = async (req, res) => {
     }
 }
 
+
+//Get user profile
+const profileUser = async (req, res) => {
+    const {id} = req.user
+
+    const user = await User.findOne({_id: id})
+
+    if (!user){
+        return res.status(404).json({error: 'No such user found'})
+    }
+    res.status(200).json(user)
+}
+
+//Update user
+// const edituser = async (req, res) => {
+//     user.avater = req.file.path
+// }
+const updateUser = async (req, res) => {
+    const {id} = req.user
+    // console.log(id)
+    // if(!mongoose.Types.ObjectId.isValid(id)){
+    //     return res.status(404).json({error: 'No such service exists'})
+    // }
+  
+    const user = await User.findOneAndUpdate({_id: id},{...req.body})
+
+    if (!user){
+        return res.status(404).json({error: 'No such service found'})
+    }
+
+    res.status(200).json(user)
+}
+
+
 module.exports = {
     loginUser,
     signupUser,
+    updateUser,
+    profileUser
 }

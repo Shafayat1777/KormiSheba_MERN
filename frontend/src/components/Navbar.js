@@ -26,6 +26,7 @@ const Navbar = () => {
                     <li><Link to='/dashboard'>Dashboard</Link></li>
                     <li><Link to='/about'>About</Link></li>
                     <li>{user && <button onClick={handleClick}>Logout</button>}</li>
+                    <li>{user && <Link to='/updateProfile'>Profile</Link>}</li>
                     <li>{user && <span className='material-symbols-outlined'>person</span>}</li>
                 </ul>
 

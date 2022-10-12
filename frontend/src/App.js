@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
+import Profile from './pages/Profile';
 import FOF from './pages/404';
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
             <Route
               path="/signup"
               element={ !user ? <Signup/> : <Navigate to="/" />}
+            />
+            <Route 
+              path="/updateProfile"
+              element={<Profile/>}
             />
             <Route
               path="*"

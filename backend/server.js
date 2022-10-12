@@ -1,9 +1,9 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const serviceRoutes = require('./routes/servicesRoutes')
 const userRoutes = require('./routes/userRoutes')
-const cors = require('cors')
 
 
 
@@ -12,16 +12,20 @@ const app = express()
 
 
 // middleware
-app.use( // cors
+// cors
+app.use( 
     cors({
         origin: "http://localhost:3000"
     })
 )
+
+// to access the request body
 app.use(express.json()) /*  this takes body of requests then
                             parses the data in the body So we
                             can access data in req handeller */
 
 
+// to log request path and method
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
